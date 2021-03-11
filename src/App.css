@@ -1,19 +1,9 @@
+/* app */
+
 .App {
   text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.questionHeader {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid black;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
 .resultsContainer {
   width: 100%;
   display: flex;
@@ -22,12 +12,35 @@
   align-items: center;
 }
 
+.searchContainer {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+}
+
+.search {
+  margin-right: 10px;
+}
+
 h1 {
   font-size: 1.5em;
 }
 
+/* question */
+.questionHeader {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .questionTitle {
   font-weight: 700;
+  width: 80%;
 }
 
 .questionContainer {
@@ -43,23 +56,17 @@ h1 {
   text-align: left;
 }
 
-.searchContainer {
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-  height: 25px;
-}
-
-.search {
-  margin-right: 10px;
-}
-
 .questionExpanded {
   height: fit-content;
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.questionInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
 }
 
 .questionBody {
@@ -84,17 +91,13 @@ h1 {
   white-space: pre-wrap;
 }
 
-.answerHeader {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid black;
-  width: 100%;
-  align-items: center;
-  height: 30px;
-  justify-content: space-between;
+.questionCommentsContainer {
+  width: 90%;
 }
 
-.commentHeader {
+/* answer */
+
+.answerHeader {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid black;
@@ -112,17 +115,6 @@ h1 {
   text-align: left;
 }
 
-.commentContainer {
-  border: 1px solid black;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.questionCommentsContainer {
-  width: 90%;
-}
-
 .answerCommentsContainer {
   width: 90%;
 }
@@ -132,7 +124,32 @@ h1 {
   padding: 10px;
 }
 
+.answerInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+
+/* comment */
+
+.commentHeader {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+  width: 100%;
+  align-items: center;
+  height: 30px;
+  justify-content: space-between;
+}
+
 .commentBody {
   text-align: left;
+  padding: 10px;
+}
+
+.commentContainer {
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-bottom: 10px;
   padding: 10px;
 }

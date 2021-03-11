@@ -5,8 +5,16 @@ const Answer = ({ answer }) => {
     <div className="answerContainer">
       <div className="answerHeader">
         <p>Answer</p>
-        <p>Created: {new Date(answer.creation_date * 1000).toISOString()}</p>
-        <p>Score: {answer.score}</p>
+        <div className="answerInfo">
+          <p>
+            Created:{' '}
+            {new Date(answer.creation_date * 1000)
+              .toISOString()
+              .replace(/T/, ' ') // replace T with a space
+              .replace(/\..+/, '')}
+          </p>
+          <p>Score: {answer.score}</p>
+        </div>
       </div>
       <div
         className="answerBody"
