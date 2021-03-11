@@ -1,24 +1,22 @@
 import Comment from './Comment';
 
-const Answer = (props) => {
+const Answer = ({ answer }) => {
   return (
     <div className="answerContainer">
       <div className="answerHeader">
         <p>Answer</p>
-        <p>
-          Created: {new Date(props.props.creation_date * 1000).toISOString()}
-        </p>
-        <p>Score: {props.props.score}</p>
+        <p>Created: {new Date(answer.creation_date * 1000).toISOString()}</p>
+        <p>Score: {answer.score}</p>
       </div>
       <div
         className="answerBody"
-        dangerouslySetInnerHTML={{ __html: props.props.body }}
+        dangerouslySetInnerHTML={{ __html: answer.body }}
       ></div>
-      {props.props.comments?.length > 0 ? (
+      {answer.comments?.length > 0 ? (
         <div className="answerCommentsContainer">
           <h1>Comments</h1>
-          {props.props.comments?.map((comment) => {
-            return <Comment props={comment}></Comment>;
+          {answer.comments?.map((comment, index) => {
+            return <Comment key={index} comment={comment}></Comment>;
           })}
         </div>
       ) : null}

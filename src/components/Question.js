@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import QuestionThread from './QuestionThread';
 
-const Question = (props) => {
+const Question = ({ question }) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <div className="questionContainer">
@@ -9,19 +9,19 @@ const Question = (props) => {
         onClick={() => {
           setExpanded(!expanded);
         }}
-        key={props.props.question_id}
+        key={question.question_id}
         className="questionHeader"
       >
         <div
           className="questionTitle"
-          dangerouslySetInnerHTML={{ __html: props.props.title }}
+          dangerouslySetInnerHTML={{ __html: question.title }}
         ></div>
         <p className="questionCreated">
-          Created: {new Date(props.props.creation_date * 1000).toISOString()}
+          Created: {new Date(question.creation_date * 1000).toISOString()}
         </p>
-        <p className="questionScore">Score: {props.props.score}</p>
+        <p className="questionScore">Score: {question.score}</p>
       </div>
-      {expanded ? <QuestionThread props={props.props}></QuestionThread> : null}
+      {expanded ? <QuestionThread question={question}></QuestionThread> : null}
     </div>
   );
 };

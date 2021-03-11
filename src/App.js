@@ -1,46 +1,18 @@
 import './App.css';
-import axios from 'axios';
 import { useState } from 'react';
 import Question from './components/Question';
+import { getQuestions } from './utils/requestUtils';
 
-const apiFilter =
-  '!6CZfOUCj48fOrIbLgFogKMsFRwU8PdzA3zenkBbaMaK6pMX(.RG7PtUSx*u';
 function App() {
   const [responseTime, setResponseTime] = useState();
   const [tag, setTag] = useState('Tag');
   const [items, setItems] = useState([]);
-  const toDate = Math.round(Date.now() / 1000);
-  const fromDate = toDate - 604800;
 
   const search = async () => {
     if (tag !== '') {
-      let newest = [];
-      let top = [];
-      const startTime = Date.now();
-      await axios
-        .get(
-          `https://api.stackexchange.com/2.2/questions?page=1&pagesize=10&order=desc&sort=votes&tagged=${tag}&fromdate=${fromDate}&todate=${toDate}&filter=${apiFilter}&site=stackoverflow`
-        )
-        .then((response) => {
-          top = response.data.items;
-        })
-        .catch((err) => {
-          alert(err);
-        });
-      await axios
-        .get(
-          `https://api.stackexchange.com/2.2/questions?page=1&pagesize=10&order=desc&sort=creation&tagged=${tag}&fromdate=${fromDate}&todate=${toDate}&filter=${apiFilter}&site=stackoverflow`
-        )
-        .then((response) => {
-          newest = response.data.items;
-        })
-        .catch((err) => {
-          alert(err);
-        });
-      let tempItems = newest.concat(top);
-      tempItems.sort((a, b) => b.creation_date - a.creation_date);
-      setItems(tempItems);
-      setResponseTime(((Date.now() - startTime) / 1000).toFixed(2));
+      let request = await getQuestions(tag);
+      setItems(request.items);
+      setResponseTime(request.responseTime);
     }
   };
 
@@ -61,7 +33,7 @@ function App() {
       {items.length !== 0 ? (
         <div className="resultsContainer">
           {items.map((item) => {
-            return <Question props={item} />;
+            return <Question key={item.question_id} question={item} />;
           })}
           <p>Response Time: {responseTime}s</p>
         </div>

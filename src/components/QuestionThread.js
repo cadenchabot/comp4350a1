@@ -1,27 +1,26 @@
 import Comment from './Comment';
 import Answer from './Answer';
 
-const QuestionThread = (props) => {
-  console.log(props);
+const QuestionThread = ({ question }) => {
   return (
     <div className="questionExpanded">
       <div
         className="questionBody"
-        dangerouslySetInnerHTML={{ __html: props.props.body }}
+        dangerouslySetInnerHTML={{ __html: question.body }}
       ></div>
-      {props.props.comments?.length > 0 ? (
+      {question.comments?.length > 0 ? (
         <div className="questionCommentsContainer">
           <h1>Comments</h1>
-          {props.props.comments?.map((comment) => {
-            return <Comment props={comment}></Comment>;
+          {question.comments?.map((comment, index) => {
+            return <Comment key={index} comment={comment}></Comment>;
           })}
         </div>
       ) : null}
-      {props.props.answers?.length > 0 ? (
+      {question.answers?.length > 0 ? (
         <div className="answersContainer">
           <h1>Answers</h1>
-          {props.props.answers?.map((answer) => {
-            return <Answer props={answer}></Answer>;
+          {question.answers?.map((answer, index) => {
+            return <Answer key={index} answer={answer}></Answer>;
           })}
         </div>
       ) : null}
