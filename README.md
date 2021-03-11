@@ -27,4 +27,3 @@ Pulls the docker image deployed to DockerHub.
 
 Runs the docker image on port 3000.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-The port can be changed to another if 3000 is already in use.
